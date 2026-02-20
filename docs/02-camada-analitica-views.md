@@ -42,6 +42,8 @@ Assim, criamos uma camada intermediária para:
 
 # 🔵 Views Criadas
 
+Abaixo são apresentadas as views criadas, acompanhadas de exemplos reais de saída, demonstrando a consolidação e organização dos dados.
+
 ## 1️⃣ vw_folha_departamento
 
 Calcula:
@@ -168,15 +170,7 @@ Isso representa a transição de:
 
 Sistema operacional → Sistema analítico
 
----
-
-# 🚀 Próxima Etapa
-
-Conectar o Power BI utilizando as views criadas, garantindo:
-
-- Simplicidade de modelagem
-- Melhor performance
-- Organização profissional do projeto
+Essa transição representa a introdução de uma camada semântica, aproximando o modelo relacional de um modelo dimensional, preparando o ambiente para consumo analítico.
 
 ---
 
@@ -189,6 +183,16 @@ Essa etapa demonstra:
 - Entendimento de arquitetura de dados
 - Separação de responsabilidades
 - Preparação adequada para BI
+
+---
+
+# 🚀 Próxima Etapa
+
+Conectar o Power BI utilizando as views criadas, garantindo:
+
+- Simplicidade de modelagem
+- Melhor performance
+- Organização profissional do projeto
 
 ---
 
@@ -213,7 +217,7 @@ Executar:
 
 ---
 
-## 3️⃣ Validar a Criação (sem inspeção das views)
+## 3️⃣ Validar a Criação
 
 Executar:
 
