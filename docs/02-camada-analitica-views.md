@@ -207,7 +207,7 @@ database/views_analiticas.sql
 
 ---
 
-## 3️⃣ Validar a Criação (sem inspeção das tabelas)
+## 3️⃣ Validar a Criação (sem inspeção das views)
 
 Executar:
 
