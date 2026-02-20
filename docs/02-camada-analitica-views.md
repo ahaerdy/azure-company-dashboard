@@ -194,8 +194,8 @@ O banco deve já estar criado e populado conforme documentado na Etapa 01.
 
 Executar previamente:
 
-database/script_bd_company.sql  
-database/insercao_de_dados_e_queries_sql.sql  
+- database/script_bd_company.sql  
+- database/insercao_de_dados_e_queries_sql.sql  
 
 ---
 
@@ -203,7 +203,7 @@ database/insercao_de_dados_e_queries_sql.sql
 
 Executar:
 
-database/views_analiticas.sql  
+- database/views_analiticas.sql  
 
 ---
 
