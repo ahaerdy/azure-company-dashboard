@@ -6,6 +6,8 @@ Após a criação do banco relacional `azure_company` e inserção dos dados, fo
 
 Essa camada foi construída utilizando **views analíticas**.
 
+**Observação**: As views funcionam como camada semântica sobre o modelo relacional, permitindo abstração e consolidação sem duplicação física dos dados.
+
 ---
 
 ## 🧠 O que é uma View?
