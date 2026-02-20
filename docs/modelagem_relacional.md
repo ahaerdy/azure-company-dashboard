@@ -72,12 +72,13 @@ Integridade referencial mantida.
 
 3. Validar contagens:
 
+```mysql
 SELECT COUNT() FROM employee;
 SELECT COUNT() FROM departament;
 SELECT COUNT() FROM project;
 SELECT COUNT() FROM works_on;
 SELECT COUNT(*) FROM dependent;
-
+```
 
 ---
 
