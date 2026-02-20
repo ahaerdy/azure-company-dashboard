@@ -70,6 +70,8 @@ Calcula:
 - Total de colaboradores envolvidos
 - Departamento responsável
 
+### Saída:
+
 ```mysql
 mysql> SELECT * FROM vw_horas_projeto;
 +---------+-----------------+----------------+---------------------+---------------------+
@@ -95,6 +97,8 @@ Permite visualizar:
 - Salário
 
 Essa view já possibilita construir um organograma.
+
+### Saída:
 
 ```mysql
 mysql> SELECT * FROM vw_estrutura_hierarquica;
