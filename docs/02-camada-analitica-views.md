@@ -40,7 +40,7 @@ Assim, criamos uma camada intermediária para:
 
 ---
 
-# 🔵 Views Criadas
+# 🔵 Views
 
 Abaixo são apresentadas as views criadas, acompanhadas de exemplos reais de saída, demonstrando a consolidação e organização dos dados.
 
