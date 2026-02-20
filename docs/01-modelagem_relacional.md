@@ -58,11 +58,25 @@ Solução adotada:
 - Inserção estruturada dos dados
 - Reativação das constraints após carga
 
-Integridade referencial mantida.
+Integridade referencial restaurada e validada após a carga.
+
+## 🧩 Arquitetura Implementada
+
+A base foi construída seguindo modelo relacional normalizado (3FN), com:
+
+- Separação clara de entidades
+- Relacionamentos explícitos
+- Integridade referencial ativa
+- Minimização de redundância
+
+Essa modelagem favorece consistência transacional e prepara o ambiente para posterior criação de camada analítica.
 
 ---
 
 ## ▶ Como Reproduzir
+
+Pré-requisito:
+- MySQL 8.0 ou superior
 
 1. Executar:
    - `database/script_bd_company.sql`
@@ -86,9 +100,20 @@ SELECT COUNT(*) FROM dependent;
 
 Base relacional íntegra e pronta para integração com Power BI.
 
-### Detalhamento
+## 🔍 Validação e Visualização dos Dados
 
-#### Tabela `employee`
+Após a carga e validação das contagens, foi realizada a inspeção completa das tabelas para confirmar:
+
+- Consistência dos relacionamentos
+- Integridade das chaves estrangeiras
+- Correta distribuição dos dados
+- Estrutura organizacional modelada
+
+Abaixo, apresenta-se o detalhamento completo das tabelas.
+
+### Detalhamento da base:
+
+#### Estrutura e dados da tabela `employee`
 
 ```mysql
 mysql> select * from employee;
@@ -106,7 +131,8 @@ mysql> select * from employee;
 +----------+-------+---------+-----------+------------+------------------------+------+----------+-----------+-----+
 8 rows in set (0,00 sec)
 ```
-#### Tabela `departament`
+
+#### Estrutura e dados da tabela `departament`
 
 ```mysql
 mysql> select * from departament;
@@ -119,7 +145,8 @@ mysql> select * from departament;
 +----------------+---------+-----------+----------------+------------------+
 3 rows in set (0,00 sec)
 ```
-#### Tabela `dept_locations`
+
+#### Estrutura e dados da tabela `dept_locations`
 
 ```mysql
 mysql> select * from dept_locations;
@@ -135,7 +162,7 @@ mysql> select * from dept_locations;
 5 rows in set (0,00 sec)
 ```
 
-#### Tabela `project`
+#### Estrutura e dados da tabela `project`
 
 ```mysql
 mysql> select * from project;
@@ -152,7 +179,7 @@ mysql> select * from project;
 6 rows in set (0,00 sec)
 ```
 
-#### Tabela `works_on`
+#### Estrutura e dados da tabela `works_on`
 
 ```mysql
 mysql> select * from works_on;
@@ -180,7 +207,7 @@ mysql> select * from works_on;
 
 ```
 
-#### Tabela `dependent`
+#### Estrutura e dados da tabela `dependent`
 
 ```mysql
 mysql> select * from dependent;
