@@ -229,5 +229,5 @@ mysql> select * from dependent;
 
 ## 🎯 Próxima Etapa
 
-Integração com ferramenta de BI para construção de dashboard corporativo.
+Criação da camada analítica utilizando Views no MySQL, preparando a base relacional para consumo em ferramentas de Business Intelligence.
 
