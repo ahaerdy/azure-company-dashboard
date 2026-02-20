@@ -184,3 +184,38 @@ Essa etapa demonstra:
 - Separação de responsabilidades
 - Preparação adequada para BI
 
+---
+
+# ▶ Como Reproduzir Esta Etapa
+
+## 1️⃣ Pré-requisito
+
+O banco deve já estar criado e populado conforme documentado na Etapa 01.
+
+Executar previamente:
+
+database/script_bd_company.sql  
+database/insercao_de_dados_e_queries_sql.sql  
+
+---
+
+## 2️⃣ Criar as Views Analíticas
+
+Executar:
+
+database/views_analiticas.sql  
+
+---
+
+## 3️⃣ Validar a Criação (sem inspeção das tabelas)
+
+Executar:
+
+```mysql
+SELECT * FROM vw_folha_departamento;
+SELECT * FROM vw_horas_projeto;
+SELECT * FROM vw_estrutura_hierarquica;
+SELECT * FROM vw_fato_horas;
+```
+
+Se as consultas retornarem dados, a camada analítica foi criada com sucesso.
