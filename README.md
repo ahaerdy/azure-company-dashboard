@@ -130,12 +130,12 @@ Essa progressão demonstra:
 
 # 📊 Status do Projeto
 
-✔ Instância MySQL criada na Azure
-✔ Base relacional implementada
-✔ Camada analítica construída
-✔ Exportação e integração com Power BI
-🔄 Transformações e modelagem dimensional em andamento
-🔄 Dashboard executivo em desenvolvimento
+- ✔ Instância MySQL criada na Azure
+- ✔ Base relacional implementada
+- ✔ Camada analítica construída
+- ✔ Exportação e integração com Power BI
+- 🔄 Transformações e modelagem dimensional em andamento
+- 🔄 Dashboard executivo em desenvolvimento
 
 ---
 
