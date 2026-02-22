@@ -1,185 +1,70 @@
-# 📄 03-integracao_e_transformacao_powerbi.md
+# 03 - Pipeline de Integração e Tratamento de Dados
+
+## 1. Contexto
+
+Devido à configuração `secure_file_priv` do MySQL, os dados foram exportados para CSV e posteriormente importados no Power BI.
+
+Pipeline adotado:
+
+MySQL → CSV → Power Query → Modelo Analítico
 
 ---
 
-# 🔄 Integração e Transformação de Dados no Power BI
+## 2. Importação das Tabelas
 
-## 🎯 Objetivo da Etapa
+Foram importadas 6 tabelas:
 
-Esta etapa tem como finalidade integrar a base relacional hospedada em MySQL na Azure ao Power BI e realizar as transformações necessárias para garantir:
-
-* Consistência estrutural
-* Correção de tipos de dados
-* Tratamento de inconsistências
-* Preparação para modelagem analítica
-
-Essa fase representa a camada de **tratamento e governança de dados (ETL leve)** dentro da arquitetura do projeto.
+* employee
+* department
+* dept_locations
+* project
+* works_on
+* dependent
 
 ---
 
-# ☁️ Origem dos Dados
+## 3. Tratamentos Aplicados
 
-* Banco relacional implementado em MySQL
-* Instância criada na Microsoft Azure
+### 3.1 Ajuste de Cabeçalhos
 
-Devido a restrições técnicas de driver no ambiente local, os dados foram exportados em formato CSV utilizando o comando:
+Correção da opção "Usar primeira linha como cabeçalho" quando aplicada incorretamente.
 
-```sql
-SELECT * INTO OUTFILE ...
-```
+### 3.2 Tipagem de Dados
 
-A exportação preservou a integridade estrutural das tabelas.
+* Campos monetários convertidos para Número Decimal (double preciso).
+* Campos identificadores ajustados para tipo adequado.
 
----
+### 3.3 Tratamento de Nulos
 
-# 📦 Pipeline de Integração
+Foi realizada verificação de valores nulos em todas as tabelas.
 
-MySQL (Azure)
-⬇
-Exportação CSV
-⬇
-Power Query
-⬇
-Modelo Analítico
-⬇
-Dashboard Executivo
+Resultado:
 
-A integração foi realizada no Microsoft Power BI Desktop por meio da importação de arquivos CSV.
+* Apenas 1 valor nulo identificado.
+* Localização: `employee.Super_ssn`
 
----
+### 3.4 Análise do Nulo em Super_ssn
 
-# 🧹 Transformações Realizadas no Power Query
+A coluna `Super_ssn` representa o supervisor do colaborador.
 
-## 1️⃣ Correção de Cabeçalhos
+A análise identificou que o único valor nulo corresponde ao colaborador no topo da hierarquia organizacional.
 
-Os arquivos CSV gerados não continham nomes de colunas.
-As colunas foram renomeadas manualmente conforme o modelo relacional definido no documento `01-modelagem_relacional.md`.
+Conclusão:
 
-Isso garantiu:
-
-* Clareza semântica
-* Manutenção das chaves primárias e estrangeiras
-* Coerência com o modelo original
+* O nulo é estrutural.
+* Não foi removido.
+* Mantém coerência hierárquica do modelo.
 
 ---
 
-## 2️⃣ Ajuste de Tipos de Dados
+## 4. Validação
 
-Foram aplicadas tipagens adequadas conforme boas práticas de modelagem:
-
-* Identificadores (SSN, chaves) → Texto
-* Datas → Tipo Date
-* Salary → Decimal Number (Double preciso)
-* Quantidades e códigos numéricos → Whole Number
-
-Essa etapa assegura precisão analítica e evita erros em medidas DAX futuras.
+* Integridade relacional preservada.
+* Nenhuma inconsistência estrutural identificada.
+* Dados prontos para modelagem dimensional.
 
 ---
 
-## 3️⃣ Verificação e Tratamento de Nulos
+## 5. Próxima Etapa
 
-Foram realizadas análises para:
-
-* Identificar colaboradores sem `super_ssn` (potenciais gerentes)
-* Verificar departamentos sem gerente definido
-* Conferir consistência hierárquica
-
-Os nulos foram tratados conforme o contexto de negócio simulado.
-
----
-
-## 4️⃣ Validação de Horas de Projeto
-
-A tabela `works_on` foi analisada para verificar:
-
-* Horas nulas
-* Valores inconsistentes
-* Possíveis distorções quantitativas
-
-Essa verificação assegura confiabilidade nas métricas de alocação.
-
----
-
-## 5️⃣ Mesclas (Merge Queries)
-
-### ✔ Employee + Department
-
-* Base: Employee
-* Junção: Department
-* Tipo: Left Outer
-
-Justificativa:
-A tabela Employee é a entidade central da análise.
-Utilizar Left Join garante que nenhum colaborador seja excluído do modelo.
-
----
-
-### ✔ Colaboradores + Nome do Gerente
-
-Foi realizada junção para incluir o nome do supervisor de cada colaborador.
-
-Essa etapa poderia ser feita via SQL ou Power Query.
-Optou-se por Power Query para manter rastreabilidade dentro do fluxo analítico.
-
----
-
-## 6️⃣ Consolidação de Colunas
-
-Foram aplicadas transformações estruturais:
-
-* Mescla de Nome + Sobrenome → Nome Completo
-* Mescla Departamento + Localização → Identificador único departamento-local
-
-Essa estratégia auxilia na futura construção do modelo estrela.
-
----
-
-## 7️⃣ Remoção de Colunas Desnecessárias
-
-Campos técnicos não utilizados no relatório foram removidos, reduzindo:
-
-* Complexidade do modelo
-* Volume de dados
-* Ambiguidade analítica
-
----
-
-# 🏗 Impacto Arquitetural
-
-A etapa de transformação permitiu:
-
-* Preparação para modelagem dimensional
-* Redução de ruído estrutural
-* Consolidação de chaves analíticas
-* Organização semântica das entidades
-
-Essa separação entre:
-
-Banco Relacional
-⬇
-Camada Analítica (Views)
-⬇
-Transformação Power Query
-
-Demonstra compreensão de arquitetura em camadas aplicada a Business Intelligence.
-
----
-
-# 🧠 Competências Demonstradas
-
-* Integração MySQL → Power BI
-* ETL com Power Query
-* Tratamento de qualidade de dados
-* Aplicação de joins controlados
-* Padronização estrutural
-* Preparação para modelo estrela
-* Governança básica de dados
-
----
-
-# 🚀 Próxima Etapa
-
-* Consolidação do modelo estrela
-* Criação de métricas DAX
-* Construção do Dashboard Executivo
-* Publicação do relatório final
+Construção do modelo estrela e criação das primeiras medidas DAX para análise executiva.

@@ -1,128 +1,51 @@
-# 00 — Resumo Executivo do Estado Atual do Projeto
+# 00 - Resumo Executivo do Estado Atual do Projeto
 
-## 📌 Identificação do Projeto
+## Objetivo
 
-Nome do repositório: `azure-company-dashboard`
-Base conceitual: Modelo relacional clássico Company
-Ambiente utilizado: MySQL 8.0 (servidor local)
-Objetivo final: Construção de dashboard corporativo no Power BI
+Construção de solução analítica completa a partir de base relacional MySQL até disponibilização estruturada no Power BI.
 
 ---
 
-# 🏗 Arquitetura Atual
+## Etapas Concluídas
 
-O projeto encontra-se estruturado em três camadas:
+### 1. Modelagem Relacional
 
-## 🔹 1️⃣ Camada Transacional (OLTP) — Concluída
+* Estrutura organizacional implementada.
+* Integridade referencial validada.
 
-Implementação do modelo relacional normalizado contendo:
+### 2. Camada Analítica
 
-- employee
-- departament
-- dept_locations
-- project
-- works_on
-- dependent
+* Views consolidadas para suporte à análise.
+* Preparação para consumo por ferramenta de BI.
 
-Características:
+### 3. Integração e Tratamento
 
-- Integridade referencial ativa
-- Resolução de dependência circular
-- Constraints implementadas
-- Scripts versionados
-- Base populada e validada
-
-Documento associado:
-`docs/01-modelagem_relacional.md`
-
-Status: ✔ Concluído
+* Exportação para CSV realizada.
+* 6 tabelas carregadas no Power BI.
+* Tipagem correta aplicada.
+* Valores monetários convertidos para Número Decimal.
+* Verificação de nulos realizada.
+* 1 único nulo identificado em `employee.Super_ssn`.
+* Análise concluída: nulo estrutural (colaborador sem gerente).
 
 ---
 
-## 🔹 2️⃣ Camada Analítica (Views) — Concluída
+## Situação Atual
 
-Criação de camada semântica utilizando views para:
+Base tratada e pronta para:
 
-- Consolidação de métricas
-- Redução de complexidade de joins
-- Separação entre dados operacionais e analíticos
-- Preparação para consumo em BI
-
-Views implementadas:
-
-- vw_folha_departamento
-- vw_horas_projeto
-- vw_estrutura_hierarquica
-- vw_fato_horas
-
-Documento associado:
-`docs/02-camada-analitica-views.md`
-
-Status: ✔ Concluído
+* Modelagem dimensional
+* Criação de relacionamentos no modelo
+* Desenvolvimento de medidas DAX
+* Construção do dashboard executivo
 
 ---
 
-## 🔹 3️⃣ Camada de Visualização (Power BI) — Em desenvolvimento
+## Próximo Passo Amanhã
 
-Próximas atividades planejadas:
+1. Definir tabela fato principal.
+2. Estruturar dimensões.
+3. Criar relacionamentos.
+4. Iniciar medidas básicas (Total Salários, Média Salarial, etc.).
 
-- Conectar Power BI ao MySQL local
-- Importar views analíticas
-- Modelar relacionamentos
-- Criar medidas (DAX)
-- Construir dashboard executivo
-- Documentar etapa 03
-
-Status: 🔄 Em andamento
-
----
-
-# 📊 Evolução Arquitetural Consolidada
-
-Modelo Relacional (OLTP)
-⬇
-Camada Analítica (Views)
-⬇
-Visualização e Indicadores (Power BI)
-
-Essa progressão demonstra separação de responsabilidades e simula arquitetura corporativa de dados.
-
----
-
-# 🧠 Decisões Técnicas Relevantes
-
-- Substituição do Azure SQL por MySQL local devido a limitação de cartão de crédito
-- Manutenção de todos os conceitos do desafio original
-- Organização do projeto em camadas
-- Versionamento de scripts
-- Documentação detalhada e reprodutível
-
----
-
-# 🎯 Próximo Marco
-
-Entrega do dashboard executivo com:
-
-- KPIs corporativos
-- Indicadores por departamento
-- Análise de horas por projeto
-- Visualização hierárquica
-
-Após isso, possível evolução futura:
-
-- Implementação de modelo estrela formal
-- Materialização de tabela fato
-- Otimizações analíticas
-
----
-
-# 📌 Observação Estratégica
-
-O projeto já demonstra:
-
-- Modelagem relacional sólida
-- Separação OLTP vs OLAP
-- Organização arquitetural
-- Capacidade de documentação técnica estruturada
-
-Encontra-se atualmente na fase de transição para visualização analítica.
+Projeto encontra-se tecnicamente consistente e pronto para evolução analítica.

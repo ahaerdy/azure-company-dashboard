@@ -1,147 +1,52 @@
+# Projeto de Engenharia de Dados e BI
 
-# 🔗 Estrutura Relacional
+## Visão Geral
 
-O modelo contempla:
+Este projeto demonstra a construção completa de uma solução analítica, partindo de um banco relacional MySQL até a disponibilização dos dados tratados no Power BI para futura construção de dashboard corporativo.
 
-* Employee → Department (1:N)
-* Employee → Employee (Supervisor)
-* Department → Project (1:N)
-* Employee → Project (N:N via works_on)
-* Employee → Dependent (1:N)
+A arquitetura foi estruturada em camadas:
 
-Simula uma estrutura corporativa corporativa realista com:
-
-* Estrutura organizacional
-* Hierarquia de supervisão
-* Controle de projetos
-* Alocação de horas
-* Folha salarial
+1. Modelagem Relacional (Base Transacional)
+2. Camada Analítica (Views SQL)
+3. Pipeline de Integração e Tratamento de Dados (Power BI)
+4. Próxima etapa: Construção do Dashboard Executivo
 
 ---
 
-# ☁️ Ambiente de Dados
+## Estrutura do Repositório
 
-O projeto foi desenvolvido com:
-
-* Banco de dados em MySQL
-* Instância criada na Microsoft Azure
-* Integração analítica via Microsoft Power BI Desktop
-
-Devido a restrições técnicas de driver no ambiente local, os dados foram exportados para arquivos CSV utilizando `SELECT INTO OUTFILE`, mantendo integridade estrutural da base.
+* 00-resumo_executivo_do_estado_atual_do_projeto.md
+* 01-modelagem_relacional.md
+* 02-camada_analitica.md
+* 03-pipeline_de_integracao_e_tratamento_de_dados.md
 
 ---
 
-# 📦 Pipeline de Integração
+## Status Atual
 
-MySQL (Azure)
-⬇
-Exportação CSV
-⬇
-Power Query (Tratamento e Transformação)
-⬇
-Modelo Analítico
-⬇
-Dashboard Executivo
-
-Essa abordagem manteve a arquitetura em camadas e garantiu continuidade do projeto.
+✔ Banco MySQL estruturado
+✔ Views analíticas criadas
+✔ Exportação para CSV realizada
+✔ Importação das 6 tabelas no Power BI
+✔ Tratamentos de dados aplicados
+✔ Validação de nulos realizada
 
 ---
 
-# 🧹 Transformações Realizadas (Power Query)
+## Tratamento de Nulos – Caso Super_ssn
 
-Conforme diretrizes do desafio:
+Foi identificado apenas 1 valor nulo na coluna `Super_ssn` da tabela `employee`.
 
-### ✔ 1. Verificação de Cabeçalhos
+Após análise, verificou-se que o registro corresponde ao colaborador no topo da hierarquia organizacional (sem gerente). Portanto:
 
-Os arquivos CSV gerados não continham nomes de colunas.
-As colunas foram renomeadas manualmente conforme o modelo relacional original.
+* O nulo é estrutural
+* Não representa erro de carga
+* Não foi removido
 
-### ✔ 2. Ajuste de Tipos de Dados
-
-* Salary → Decimal Number
-* Datas → Tipo Date
-* Identificadores → Texto
-* Chaves Numéricas → Whole Number
-
-### ✔ 3. Tratamento de Nulos
-
-* Identificação de colaboradores sem `super_ssn` (possíveis gerentes)
-* Verificação de departamentos sem gerente
-* Análise de integridade hierárquica
-
-### ✔ 4. Validação de Horas de Projeto
-
-* Conferência de horas nulas
-* Verificação de valores inconsistentes
-
-### ✔ 5. Mesclas Realizadas
-
-* Employee + Department (Left Join)
-* Inclusão do nome do departamento na base de colaboradores
-* Junção para identificação do nome do gerente
-
-Justificativa técnica:
-Foi utilizada mescla (merge) em vez de atribuição direta, pois os dados estavam distribuídos em entidades normalizadas, exigindo junção relacional.
-
-### ✔ 6. Consolidação de Campos
-
-* Mescla de Nome + Sobrenome → Nome Completo
-* Mescla Departamento + Localização → Identificador único departamento-local
-
-### ✔ 7. Remoção de Colunas Desnecessárias
-
-Campos técnicos não utilizados no relatório foram removidos para otimização do modelo.
+Essa decisão mantém a integridade da hierarquia organizacional no modelo analítico.
 
 ---
 
-# 📊 Evolução Arquitetural
+## Próxima Etapa
 
-Banco Relacional Normalizado
-⬇
-Camada Analítica (Views SQL)
-⬇
-Transformação Power Query
-⬇
-Modelo Estrela (em preparação)
-⬇
-Dashboard Executivo
-
-Essa progressão demonstra:
-
-* Separação clara de responsabilidades
-* Governança de dados
-* Preparação para BI corporativo
-
----
-
-# 🧠 Competências Demonstradas
-
-* Modelagem relacional normalizada
-* Integridade referencial
-* Resolução de dependência circular
-* Criação de camada analítica (views)
-* Transformação de dados no Power Query
-* Tratamento de qualidade de dados
-* Construção de modelo analítico
-* Integração MySQL → Power BI
-* Documentação técnica estruturada
-
----
-
-# 📊 Status do Projeto
-
-- ✔ Instância MySQL criada na Azure
-- ✔ Base relacional implementada
-- ✔ Camada analítica construída
-- ✔ Exportação e integração com Power BI
-- 🔄 Transformações e modelagem dimensional em andamento
-- 🔄 Dashboard executivo em desenvolvimento
-
----
-
-# 🚀 Próxima Etapa
-
-* Finalização do modelo estrela
-* Criação das métricas DAX
-* Construção da página executiva
-* Publicação do relatório Power BI
+Construção do modelo dimensional (estrela) e desenvolvimento do dashboard executivo com métricas organizacionais.
