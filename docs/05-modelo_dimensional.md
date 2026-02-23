@@ -70,6 +70,10 @@ departament ←── employee ←── works_on (FATO)
          (Dnum → Dnumber)
 ```
 
+<p align="center">
+  <img src="000-Midia_e_Anexos/2026-02-23-13-04-49.png" alt="" width="480">
+</p>
+
 ---
 
 ## ⚠️ Aviso de Caminhos Ambíguos
