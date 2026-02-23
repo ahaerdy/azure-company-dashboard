@@ -116,9 +116,23 @@ Criada por duplicação da tabela `employee`, seguida de agrupamento pela coluna
 
 O registro nulo representa James Borg — sem gerente por estar no topo da hierarquia.
 
----
+### 4.7 Correção da coluna Hours
 
-## 5. Consultas Resultantes no Power BI
+Durante a configuração do modelo dimensional, foi identificado que os valores da coluna `Hours` da tabela `works_on` estavam multiplicados por 10 (ex: `32.5` aparecia como `325`).
+
+Causa: problema de separador decimal na importação do CSV — o ponto (`.`) não foi interpretado corretamente.
+
+Solução aplicada no Power Query:
+- Tipo da coluna alterado para **Número Decimal**
+- Coluna dividida por **10** via Transformar → Padrão → Dividir
+
+| Antes | Depois |
+|---|---|
+| 325 | 32.5 |
+| 75 | 7.5 |
+| 100 | 10.0 |
+| 400 | 40.0 |
+| 0 | 0.0 |
 
 | Consulta | Tipo | Descrição |
 |---|---|---|
