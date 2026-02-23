@@ -1,51 +1,48 @@
 # 00 - Resumo Executivo do Estado Atual do Projeto
 
-## Objetivo
-
-Construção de solução analítica completa a partir de base relacional MySQL até disponibilização estruturada no Power BI.
-
----
-
-## Etapas Concluídas
-
-### 1. Modelagem Relacional
-
-* Estrutura organizacional implementada.
-* Integridade referencial validada.
-
-### 2. Camada Analítica
-
-* Views consolidadas para suporte à análise.
-* Preparação para consumo por ferramenta de BI.
-
-### 3. Integração e Tratamento
-
-* Exportação para CSV realizada.
-* 6 tabelas carregadas no Power BI.
-* Tipagem correta aplicada.
-* Valores monetários convertidos para Número Decimal.
-* Verificação de nulos realizada.
-* 1 único nulo identificado em `employee.Super_ssn`.
-* Análise concluída: nulo estrutural (colaborador sem gerente).
+## 1. Objetivo do Projeto
+O projeto visa integrar dados com **MySQL Azure** e transformá-los para análise em **Power BI**, seguindo o desafio proposto na disciplina. O foco é criar um modelo analítico consistente e pronto para relatórios corporativos, garantindo qualidade e integridade dos dados.
 
 ---
 
-## Situação Atual
+## 2. Estado Atual do Projeto
 
-Base tratada e pronta para:
+### 2.1 Modelagem Relacional
+- Tabelas principais: `employee`, `department`, `project`, `works_on`.
+- Relações definidas:
+  - `employee.Dno → department.Dnumber`
+  - `project.Dnum → department.Dnumber`
+  - `works_on.Essn → employee.Ssn`
+  - `works_on.Pno → project.Pnumber`
 
-* Modelagem dimensional
-* Criação de relacionamentos no modelo
-* Desenvolvimento de medidas DAX
-* Construção do dashboard executivo
+### 2.2 Limpeza e Transformação de Dados
+- Tipos de dados ajustados (valores monetários para `double` / `decimal`).
+- Nulos analisados e tratados:
+  - `employee.Super_ssn` nulo identificado como **indicador de hierarquia alta**.
+- Colunas complexas ainda serão separadas nos próximos passos.
+
+### 2.3 Verificação de Horas e Hierarquia de Funcionários
+- Foi realizada análise da tabela `works_on` para verificar consistência do número de horas por projeto.
+- Caso identificado: **James Borg (SSN 888665555)** vinculado ao projeto **Reorganization (Pno 20)** com **0 horas** — indica papel estratégico/supervisão.
+- Consulta de `Super_ssn` mostrou funcionários sem gerente, confirmando posições hierárquicas altas.
+- Agregação por projeto confirma **quantos funcionários sem gerente estão vinculados a cada projeto**.
+- Detalhes completos das queries, resultados e interpretações estão disponíveis em: [04-verificacao_horas_e_hierarquia.md](04-verificacao_horas_e_hierarquia.md)
 
 ---
 
-## Próximo Passo Amanhã
+## 3. Próximos Passos do Desafio
 
-1. Definir tabela fato principal.
-2. Estruturar dimensões.
-3. Criar relacionamentos.
-4. Iniciar medidas básicas (Total Salários, Média Salarial, etc.).
+1. **Separar colunas complexas**
+   - Transformar colunas que contêm múltiplas informações em colunas distintas para análise (ex.: FullName, Endereço detalhado).
+2. **Mesclar consultas `employee` e `department`**
+   - Criar tabela `employee` com o **nome do departamento associado** a cada funcionário.
+   - Tipo de junção dependerá da necessidade de manter funcionários sem departamento.
+3. **Eliminar colunas desnecessárias**
+   - Limpar a tabela final, mantendo apenas colunas relevantes para análises e relatório Power BI.
 
-Projeto encontra-se tecnicamente consistente e pronto para evolução analítica.
+---
+
+## 4. Observações Finais
+- Nenhuma inconsistência grave encontrada até o momento.
+- Casos de 0 horas devem ser mantidos para refletir a **hierarquia e participação estratégica**.
+- O histórico detalhado das verificações garante rastreabilidade e facilita futuras análises.
