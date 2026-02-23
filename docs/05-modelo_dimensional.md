@@ -61,18 +61,42 @@ Esse modelo é preferido em BI porque:
 
 ## 📐 Diagrama do Modelo
 
-```
-         dependent
-              ↓ (Essn → Ssn)
-departament ←── employee ←── works_on (FATO)
-     ↑               ↑            ↓ (Pno → Pnumber)
-     └───────── project ──────────┘
-         (Dnum → Dnumber)
-```
+```mermaid
+erDiagram
+    works_on {
+        string Essn
+        int Pno
+        decimal Hours
+    }
+    employee {
+        string Ssn
+        string FullName
+        string Manager
+        string Dname
+        decimal Salary
+    }
+    departament {
+        int Dnumber
+        string Dname
+        string Mgr_ssn
+    }
+    project {
+        int Pnumber
+        string Pname
+        int Dnum
+    }
+    dependent {
+        string Essn
+        string Dependent_name
+        string Relationship
+    }
 
-<p align="center">
-  <img src="000-Midia_e_Anexos/2026-02-23-13-04-49.png" alt="" >
-</p>
+    works_on }o--|| employee : "Essn → Ssn"
+    works_on }o--|| project : "Pno → Pnumber"
+    employee }o--|| departament : "Dno → Dnumber"
+    project }o--|| departament : "Dnum → Dnumber"
+    dependent }o--|| employee : "Essn → Ssn"
+```
 
 ---
 
