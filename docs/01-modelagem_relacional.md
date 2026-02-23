@@ -204,7 +204,6 @@ mysql> select * from works_on;
 | 999887777 |  30 |  30.0 |
 +-----------+-----+-------+
 16 rows in set (0,00 sec)
-
 ```
 
 #### Estrutura e dados da tabela `dependent`
@@ -227,7 +226,10 @@ mysql> select * from dependent;
 
 ---
 
+## ✅ Status desta Etapa
+
+Concluída. Base relacional íntegra, validada e integrada ao Power BI via exportação CSV.
+
 ## 🎯 Próxima Etapa
 
-Criação da camada analítica utilizando Views no MySQL, preparando a base relacional para consumo em ferramentas de Business Intelligence.
-
+Construção do modelo dimensional (star schema) e desenvolvimento do dashboard executivo no Power BI.

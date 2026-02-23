@@ -34,9 +34,9 @@ Porém, ferramentas de BI trabalham melhor com:
 
 Assim, criamos uma camada intermediária para:
 
-✔ Separar OLTP de OLAP
-✔ Reduzir complexidade no Power BI
-✔ Melhorar organização arquitetural
+✔ Separar OLTP de OLAP  
+✔ Reduzir complexidade no Power BI  
+✔ Melhorar organização arquitetural  
 
 ---
 
@@ -125,14 +125,11 @@ mysql> SELECT * FROM vw_estrutura_hierarquica;
 
 Essa é a principal view analítica.
 
-Cada linha representa:
-
-Funcionário + Projeto + Horas trabalhadas
+Cada linha representa: Funcionário + Projeto + Horas trabalhadas.
 
 Essa estrutura se aproxima de uma **tabela fato**, típica de modelos dimensionais.
 
 ```mysql
-
 mysql> SELECT * FROM vw_fato_horas;
 +-----------+------------------+----------+----------------+---------+-----------------+-----------+-------+
 | Essn      | Colaborador      | Salary   | Departamento   | Pnumber | Projeto         | Plocation | Hours |
@@ -157,18 +154,17 @@ mysql> SELECT * FROM vw_fato_horas;
 16 rows in set (0,00 sec)
 ```
 
+---
+
 # 📈 Evolução Arquitetural do Projeto
 
 ### Antes:
 Banco apenas relacional (modelo normalizado)
 
 ### Depois:
-
 Banco relacional + camada analítica (views)
 
-Isso representa a transição de:
-
-Sistema operacional → Sistema analítico
+Isso representa a transição de: **Sistema operacional → Sistema analítico**
 
 Essa transição representa a introdução de uma camada semântica, aproximando o modelo relacional de um modelo dimensional, preparando o ambiente para consumo analítico.
 
@@ -186,13 +182,11 @@ Essa etapa demonstra:
 
 ---
 
-# 🚀 Próxima Etapa
+## ⚠️ Observação sobre a Integração com Power BI
 
-Conectar o Power BI utilizando as views criadas, garantindo:
+A integração com o Power BI **não foi realizada via views**, pois a configuração `secure_file_priv` do MySQL impediu o acesso direto. Os dados foram exportados para **CSV** e importados no Power BI via Power Query.
 
-- Simplicidade de modelagem
-- Melhor performance
-- Organização profissional do projeto
+As views continuam válidas como documentação da camada semântica e podem ser utilizadas em conexões diretas ao MySQL quando disponíveis.
 
 ---
 
@@ -204,22 +198,16 @@ O banco deve já estar criado e populado conforme documentado na Etapa 01.
 
 Executar previamente:
 
-- database/script_bd_company.sql  
-- database/insercao_de_dados_e_queries_sql.sql  
-
----
+- `database/script_bd_company.sql`
+- `database/insercao_de_dados_e_queries_sql.sql`
 
 ## 2️⃣ Criar as Views Analíticas
 
 Executar:
 
-- database/views_analiticas.sql  
-
----
+- `database/views_analiticas.sql`
 
 ## 3️⃣ Validar a Criação
-
-Executar:
 
 ```mysql
 SELECT * FROM vw_folha_departamento;
@@ -229,3 +217,13 @@ SELECT * FROM vw_fato_horas;
 ```
 
 Se as consultas retornarem dados, a camada analítica foi criada com sucesso.
+
+---
+
+## ✅ Status desta Etapa
+
+Concluída. Views criadas, validadas e documentadas.
+
+## 🎯 Próxima Etapa
+
+Construção do modelo dimensional (star schema) e desenvolvimento do dashboard executivo no Power BI.

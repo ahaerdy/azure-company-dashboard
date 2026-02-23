@@ -16,12 +16,12 @@ Documentar as verificações realizadas nas tabelas `works_on` e `employee`, com
 ### 1.2 Query utilizada
 ```sql
 SELECT * FROM works_on;
-````
+```
 
 ### 1.3 Conclusão
 
-* Horas zeradas indicam **participação estratégica ou supervisão**, não execução direta de tarefas.
-* Nenhuma inconsistência crítica encontrada na tabela.
+- Horas zeradas indicam **participação estratégica ou supervisão**, não execução direta de tarefas.
+- Nenhuma inconsistência crítica encontrada na tabela.
 
 ---
 
@@ -55,8 +55,8 @@ WHERE e.Super_ssn IS NULL;
 
 ### 2.4 Conclusão
 
-* Funcionário **no topo da hierarquia**, possivelmente gerente ou membro da alta direção.
-* Vinculado a projeto estratégico com **0 horas efetivas**.
+- Funcionário **no topo da hierarquia**, possivelmente gerente ou membro da alta direção.
+- Vinculado a projeto estratégico com **0 horas efetivas**.
 
 ---
 
@@ -82,7 +82,7 @@ GROUP BY w.Pno, p.Pname
 ORDER BY w.Pno;
 ```
 
-### 3.3 Resultado esperado
+### 3.3 Resultado
 
 | ProjectNumber | ProjectName    | NumEmployeesWithoutManager | TotalHoursWithoutManager |
 | ------------- | -------------- | -------------------------- | ------------------------ |
@@ -90,13 +90,33 @@ ORDER BY w.Pno;
 
 ### 3.4 Conclusão
 
-* Projeto 20 (“Reorganization”) possui **1 funcionário sem gerente**.
-* Total de horas = 0 → reforça papel estratégico ou de supervisão.
+- Projeto 20 ("Reorganization") possui **1 funcionário sem gerente**.
+- Total de horas = 0 → reforça papel estratégico ou de supervisão.
 
 ---
 
-## 4. Observações Finais
+## 4. Reflexo no Power Query
 
-* Não foram encontradas inconsistências graves.
-* Registros com **0 horas** devem ser mantidos para refletir hierarquia e participação estratégica.
-* Próximo passo: continuar verificações das demais colunas e transformações conforme o desafio do projeto.
+As conclusões desta análise influenciaram diretamente as transformações realizadas no Power BI:
+
+- O nulo em `Super_ssn` foi **preservado** na tabela `employee` — não removido.
+- No auto-join que gerou a coluna `Manager`, a junção do tipo **Externa Esquerda** garantiu que James Borg permanecesse na tabela com valor nulo em `Manager`.
+- Na tabela `employee_por_gerente`, o registro nulo aparece com **1 colaborador** — o próprio James Borg, confirmando sua posição hierárquica.
+
+---
+
+## 5. Observações Finais
+
+- Não foram encontradas inconsistências graves.
+- Registros com **0 horas** foram mantidos para refletir hierarquia e participação estratégica.
+- Todas as verificações desta etapa foram concluídas e incorporadas ao modelo analítico.
+
+---
+
+## ✅ Status desta Etapa
+
+Concluída. Verificações realizadas, documentadas e incorporadas às transformações do Power Query.
+
+## 🎯 Próxima Etapa
+
+Construção do modelo dimensional (star schema) e desenvolvimento do dashboard executivo no Power BI.
