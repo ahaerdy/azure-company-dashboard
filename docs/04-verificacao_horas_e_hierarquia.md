@@ -86,7 +86,7 @@ ORDER BY w.Pno;
 
 | ProjectNumber | ProjectName    | NumEmployeesWithoutManager | TotalHoursWithoutManager |
 | ------------- | -------------- | -------------------------- | ------------------------ |
-| 20            | Reorganization | 1                          | 0.0                      |
+| 20            | Reorganization | 1                          | 0                        |
 
 ### 3.4 Conclusão
 
