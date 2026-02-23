@@ -1,8 +1,3 @@
-Perfeito! Aqui está o conteúdo completo em Markdown para o arquivo **`04-verificacao_horas_e_hierarquia.md`**, pronto para colocar no repositório. Use o botão **“Copy”** para copiar todo o conteúdo.
-
----
-
-````markdown
 # 04 - Verificação de Horas e Hierarquia (Tabela works_on e Super_ssn)
 
 ## Objetivo
@@ -105,5 +100,3 @@ ORDER BY w.Pno;
 * Não foram encontradas inconsistências graves.
 * Registros com **0 horas** devem ser mantidos para refletir hierarquia e participação estratégica.
 * Próximo passo: continuar verificações das demais colunas e transformações conforme o desafio do projeto.
-
-``
