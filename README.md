@@ -49,7 +49,7 @@ Essa abordagem é válida pois emprega todos os conceitos do desafio original:
 ├── README.md                                          ← Este arquivo
 ├── database/
 │   ├── script_bd_company.sql                         ← DDL: criação das tabelas
-│   ├── insercao_de_dados_e_queries_sql.sql           ← DML: inserção dos dados
+│   ├── insercao_de_dados_e_queries_sql.sql            ← DML: inserção dos dados
 │   └── views_analiticas.sql                          ← Views da camada analítica
 ├── powerbi/
 │   └── azure_company.pbix                            ← Arquivo Power BI
@@ -224,6 +224,137 @@ mysql -u root -p -e "
   SELECT COUNT(*) AS dependents FROM azure_company.dependent;
 "
 ```
+
+---
+
+## 📊 Etapa 02 — Camada Analítica com Views (MySQL)
+
+### Objetivo
+
+Após a criação do banco relacional e inserção dos dados, foi construída uma camada intermediária entre o banco transacional (OLTP) e o Power BI, utilizando **views analíticas** no MySQL.
+
+As views funcionam como camada semântica sobre o modelo relacional:
+- Não duplicam dados
+- Não alteram as tabelas originais
+- Permitem criar consolidações e métricas
+- Simplificam consultas complexas
+
+### Por que criar uma camada analítica?
+
+As tabelas originais foram modeladas para integridade relacional (modelo normalizado). Ferramentas de BI trabalham melhor com dados consolidados e estruturas mais simples. A camada analítica resolve isso:
+
+| Antes | Depois |
+|---|---|
+| Banco apenas relacional (OLTP) | Banco relacional + camada analítica (OLAP) |
+| Consultas complexas com múltiplos JOINs | Views prontas para consumo |
+| Responsabilidade misturada | Separação clara de responsabilidades |
+
+### Views Criadas
+
+#### 1. `vw_folha_departamento`
+Total de colaboradores, folha salarial e média salarial por departamento.
+
+```sql
+SELECT * FROM vw_folha_departamento;
+```
+```
++---------+----------------+---------------------+----------------------+----------------+
+| Dnumber | Dname          | Total_Colaboradores | Total_Folha_Salarial | Media_Salarial |
++---------+----------------+---------------------+----------------------+----------------+
+|       4 | Administration |                   3 |             93000.00 |       31000.00 |
+|       1 | Headquarters   |                   1 |             55000.00 |       55000.00 |
+|       5 | Research       |                   4 |            133000.00 |       33250.00 |
++---------+----------------+---------------------+----------------------+----------------+
+```
+
+#### 2. `vw_horas_projeto`
+Total de horas e colaboradores envolvidos por projeto, com departamento responsável.
+
+```sql
+SELECT * FROM vw_horas_projeto;
+```
+```
++---------+-----------------+----------------+---------------------+---------------------+
+| Pnumber | Pname           | Departamento   | Total_Horas_Projeto | Total_Colaboradores |
++---------+-----------------+----------------+---------------------+---------------------+
+|       1 | ProductX        | Research       |                52.5 |                   2 |
+|       2 | ProductY        | Research       |                37.5 |                   3 |
+|       3 | ProductZ        | Research       |                50.0 |                   2 |
+|      10 | Computerization | Administration |                55.0 |                   3 |
+|      20 | Reorganization  | Headquarters   |                25.0 |                   3 |
+|      30 | Newbenefits     | Administration |                55.0 |                   3 |
++---------+-----------------+----------------+---------------------+---------------------+
+```
+
+#### 3. `vw_estrutura_hierarquica`
+Organograma completo com colaborador, supervisor, departamento e salário.
+
+```sql
+SELECT * FROM vw_estrutura_hierarquica;
+```
+```
++-----------+------------------+------------------+----------------+----------+
+| Ssn       | Colaborador      | Supervisor       | Departamento   | Salary   |
++-----------+------------------+------------------+----------------+----------+
+| 123456789 | John Smith       | Franklin Wong    | Research       | 30000.00 |
+| 333445555 | Franklin Wong    | James Borg       | Research       | 40000.00 |
+| 453453453 | Joyce English    | Franklin Wong    | Research       | 25000.00 |
+| 666884444 | Ramesh Narayan   | Franklin Wong    | Research       | 38000.00 |
+| 888665555 | James Borg       | NULL             | Headquarters   | 55000.00 |
+| 987654321 | Jennifer Wallace | James Borg       | Administration | 43000.00 |
+| 987987987 | Ahmad Jabbar     | Jennifer Wallace | Administration | 25000.00 |
+| 999887777 | Alicia Zelaya    | Jennifer Wallace | Administration | 25000.00 |
++-----------+------------------+------------------+----------------+----------+
+```
+
+#### 4. `vw_fato_horas`
+Tabela fato principal: cada linha representa um colaborador alocado em um projeto com suas horas trabalhadas. Estrutura que se aproxima de um modelo dimensional.
+
+```sql
+SELECT * FROM vw_fato_horas;
+```
+```
++-----------+------------------+----------+----------------+---------+-----------------+-----------+-------+
+| Essn      | Colaborador      | Salary   | Departamento   | Pnumber | Projeto         | Plocation | Hours |
++-----------+------------------+----------+----------------+---------+-----------------+-----------+-------+
+| 123456789 | John Smith       | 30000.00 | Research       |       1 | ProductX        | Bellaire  |  32.5 |
+| 123456789 | John Smith       | 30000.00 | Research       |       2 | ProductY        | Sugarland |   7.5 |
+| 333445555 | Franklin Wong    | 40000.00 | Research       |       2 | ProductY        | Sugarland |  10.0 |
+| 333445555 | Franklin Wong    | 40000.00 | Research       |       3 | ProductZ        | Houston   |  10.0 |
+| 333445555 | Franklin Wong    | 40000.00 | Research       |      10 | Computerization | Stafford  |  10.0 |
+| 333445555 | Franklin Wong    | 40000.00 | Research       |      20 | Reorganization  | Houston   |  10.0 |
+| 453453453 | Joyce English    | 25000.00 | Research       |       1 | ProductX        | Bellaire  |  20.0 |
+| 453453453 | Joyce English    | 25000.00 | Research       |       2 | ProductY        | Sugarland |  20.0 |
+| 666884444 | Ramesh Narayan   | 38000.00 | Research       |       3 | ProductZ        | Houston   |  40.0 |
+| 888665555 | James Borg       | 55000.00 | Headquarters   |      20 | Reorganization  | Houston   |   0.0 |
+| 987654321 | Jennifer Wallace | 43000.00 | Administration |      20 | Reorganization  | Houston   |  15.0 |
+| 987654321 | Jennifer Wallace | 43000.00 | Administration |      30 | Newbenefits     | Stafford  |  20.0 |
+| 987987987 | Ahmad Jabbar     | 25000.00 | Administration |      10 | Computerization | Stafford  |  35.0 |
+| 987987987 | Ahmad Jabbar     | 25000.00 | Administration |      30 | Newbenefits     | Stafford  |   5.0 |
+| 999887777 | Alicia Zelaya    | 25000.00 | Administration |      10 | Computerization | Stafford  |  10.0 |
+| 999887777 | Alicia Zelaya    | 25000.00 | Administration |      30 | Newbenefits     | Stafford  |  30.0 |
++-----------+------------------+----------+----------------+---------+-----------------+-----------+-------+
+```
+
+### Como reproduzir
+
+```bash
+# Executar após a Etapa 01
+mysql -u root -p < database/views_analiticas.sql
+
+# Validar
+mysql -u root -p -e "
+  USE azure_company;
+  SELECT * FROM vw_folha_departamento;
+  SELECT * FROM vw_horas_projeto;
+  SELECT * FROM vw_estrutura_hierarquica;
+  SELECT * FROM vw_fato_horas;
+"
+```
+
+### ⚠️ Observação sobre a integração com Power BI
+
+A integração com o Power BI **não foi realizada via views**, pois a configuração `secure_file_priv` do MySQL impediu o acesso direto ao servidor. Os dados foram exportados para **CSV** e importados via Power Query. As views continuam válidas como documentação da camada semântica e podem ser utilizadas em conexões diretas ao MySQL quando disponíveis.
 
 ---
 
