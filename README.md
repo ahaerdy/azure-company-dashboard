@@ -484,7 +484,7 @@ O modelo segue o padrão **Star Schema**:
 - `department_locations`
 - `employee_por_gerente`
 
-### 5.3 Diagrama do Modelo (Star Schema)
+### 5.3 Diagrama (Star Schema)
 
 ```mermaid
 erDiagram
