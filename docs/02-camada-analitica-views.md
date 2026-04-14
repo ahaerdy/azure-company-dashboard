@@ -223,7 +223,3 @@ Se as consultas retornarem dados, a camada analítica foi criada com sucesso.
 ## ✅ Status desta Etapa
 
 Concluída. Views criadas, validadas e documentadas.
-
-## 🎯 Próxima Etapa
-
-Construção do modelo dimensional (star schema) e desenvolvimento do dashboard executivo no Power BI.
