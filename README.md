@@ -486,15 +486,48 @@ O modelo segue o padrão **Star Schema**:
 
 ### 5.3 Diagrama do Modelo (Star Schema)
 
-<p align="center">
-  <img src="000-Midia_e_Anexos/2026-04-14-09-58-00.png" alt="" width="1024">
-</p>
+```mermaid
+erDiagram
+    works_on {
+        string Essn
+        int Pno
+        decimal Hours
+    }
+    employee {
+        string Ssn
+        string FullName
+        string Manager
+        string Dname
+        decimal Salary
+    }
+    departament {
+        int Dnumber
+        string Dname
+        string Mgr_ssn
+    }
+    project {
+        int Pnumber
+        string Pname
+        int Dnum
+    }
+    dependent {
+        string Essn
+        string Dependent_name
+        string Relationship
+    }
+
+    works_on }o--|| employee : "Essn → Ssn"
+    works_on }o--|| project : "Pno → Pnumber"
+    employee }o--|| departament : "Dno → Dnumber"
+    project }o--|| departament : "Dnum → Dnumber"
+    dependent }o--|| employee : "Essn → Ssn"
+```
 
 ### 5.4 Decisões Técnicas
 
 - Todos os relacionamentos foram criados manualmente via “Gerenciar Relacionamentos”.
-- Aviso de “caminhos ambíguos” entre works_on e department foi aceito (dois caminhos possíveis: via employee ou via project). - Será tratado com USERELATIONSHIP nas medidas DAX quando necessário.
-- Correção final da coluna Hours (divisão por 10 + tipo Decimal) foi aplicada antes de fechar o modelo.
+- “Caminhos ambíguos” entre works_on e department foram admitidos (dois caminhos possíveis: via employee ou via project).Tratados através de USERELATIONSHIP nas medidas DAX quando necessário.
+- Correção final da coluna Hours (divisão por 10 + tipo Decimal) aplicada antes de fechar o modelo.
 - Tabelas department_locations e employee_por_gerente foram mantidas isoladas para uso direto nos visuais.
 
 ###  5.5 Resultado
