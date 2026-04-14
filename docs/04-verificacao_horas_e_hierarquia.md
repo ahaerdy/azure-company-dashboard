@@ -116,7 +116,3 @@ As conclusões desta análise influenciaram diretamente as transformações real
 ## ✅ Status desta Etapa
 
 Concluída. Verificações realizadas, documentadas e incorporadas às transformações do Power Query.
-
-## 🎯 Próxima Etapa
-
-Construção do modelo dimensional (star schema) e desenvolvimento do dashboard executivo no Power BI.

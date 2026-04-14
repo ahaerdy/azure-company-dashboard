@@ -152,9 +152,3 @@ Solução aplicada no Power Query:
 - Integridade relacional preservada.
 - Nenhuma inconsistência estrutural identificada.
 - Todas as transformações aplicadas e carregadas com sucesso no Power BI.
-
----
-
-## 7. Próxima Etapa
-
-Construção do modelo estrela (star schema) e desenvolvimento do dashboard executivo com métricas organizacionais.

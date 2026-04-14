@@ -447,4 +447,61 @@ Documentação detalhada desta etapa:
 
 ---
 
-*Continuação nas próximas etapas...*
+## ⭐ Etapa 05 — Modelo Dimensional (Star Schema)
+
+### Objetivo
+
+Configurar o modelo dimensional no Power BI para otimizar as análises e garantir o correto funcionamento das medidas DAX e visuais do dashboard.
+
+O modelo segue o padrão **Star Schema**:
+- **Tabela Fato** no centro (transações)
+- **Tabelas Dimensão** ao redor (descrições/contextos)
+
+### 5.1 Estrutura do Modelo
+
+**Tabela Fato**:
+- `works_on` (alocação de horas por colaborador e projeto)
+
+**Tabelas Dimensão**:
+- `employee`
+- `department`
+- `project`
+- `dependent`
+- `department_locations`
+- `employee_por_gerente`
+
+### 5.2 Relacionamentos Criados
+
+| De                  | Coluna     | Para                | Coluna     | Cardinalidade | Direção do Filtro |
+|---------------------|------------|---------------------|------------|---------------|-------------------|
+| `works_on`          | `Essn`     | `employee`          | `Ssn`      | Muitos:1      | Único             |
+| `works_on`          | `Pno`      | `project`           | `Pnumber`  | Muitos:1      | Único             |
+| `employee`          | `Dno`      | `department`        | `Dnumber`  | Muitos:1      | Único             |
+| `dependent`         | `Essn`     | `employee`          | `Ssn`      | Muitos:1      | Único             |
+| `project`           | `Dnum`     | `department`        | `Dnumber`  | Muitos:1      | Único             |
+
+**Tabelas isoladas (sem relacionamento ativo)**:
+- `department_locations`
+- `employee_por_gerente`
+
+### 5.3 Diagrama do Modelo (Mermaid)
+
+```mermaid
+erDiagram
+    works_on }o--|| employee : "Essn → Ssn"
+    works_on }o--|| project : "Pno → Pnumber"
+    employee }o--|| department : "Dno → Dnumber"
+    dependent }o--|| employee : "Essn → Ssn"
+    project }o--|| department : "Dnum → Dnumber"
+
+5.4 Decisões TécnicasTodos os relacionamentos foram criados manualmente via “Gerenciar Relacionamentos”.
+Aviso de “caminhos ambíguos” entre works_on e department foi aceito (dois caminhos possíveis: via employee ou via project). Será tratado com USERELATIONSHIP nas medidas DAX quando necessário.
+Correção final da coluna Hours (divisão por 10 + tipo Decimal) foi aplicada antes de fechar o modelo.
+Tabelas department_locations e employee_por_gerente foram mantidas isoladas para uso direto nos visuais.
+
+Resultado: Modelo dimensional limpo, otimizado e pronto para a criação de medidas DAX e construção do dashboard corporativo.Documentação detalhada desta etapa (incluindo diagrama interativo):Etapa 05 — Modelo Dimensional (Star Schema) (docs/05-modelo_dimensional.md)
+
+ Todo o pipeline de preparação de dados está concluído!Próximos passos possíveis:Criação de medidas DAX
+Construção do dashboard executivo
+Publicação e compartilhamento do relatório
+
