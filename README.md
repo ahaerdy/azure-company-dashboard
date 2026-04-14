@@ -486,13 +486,9 @@ O modelo segue o padrão **Star Schema**:
 
 ### 5.3 Diagrama do Modelo (Mermaid)
 
-```mermaid
-erDiagram
-    works_on }o--|| employee : "Essn → Ssn"
-    works_on }o--|| project : "Pno → Pnumber"
-    employee }o--|| department : "Dno → Dnumber"
-    dependent }o--|| employee : "Essn → Ssn"
-    project }o--|| department : "Dnum → Dnumber"
+<p align="center">
+  <img src="000-Midia_e_Anexos/2026-04-14-09-58-00.png" alt="" width="480">
+</p>
 
 5.4 Decisões TécnicasTodos os relacionamentos foram criados manualmente via “Gerenciar Relacionamentos”.
 Aviso de “caminhos ambíguos” entre works_on e department foi aceito (dois caminhos possíveis: via employee ou via project). Será tratado com USERELATIONSHIP nas medidas DAX quando necessário.
