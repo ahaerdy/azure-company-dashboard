@@ -6,8 +6,6 @@ Projeto desenvolvido como parte do bootcamp **NTT DATA - Engenharia de Dados com
 
 O objetivo é demonstrar o pipeline completo de engenharia de dados — desde a modelagem relacional até a preparação de dados para um dashboard corporativo — utilizando MySQL e Power BI.
 
-> **Instrutora:** Juliana Mascarenhas (Tech Education Specialist / Cientista de Dados)
-
 ---
 
 ## 🎯 Escopo do Desafio
