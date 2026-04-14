@@ -490,14 +490,25 @@ O modelo segue o padrão **Star Schema**:
   <img src="000-Midia_e_Anexos/2026-04-14-09-58-00.png" alt="" width="1024">
 </p>
 
-5.4 Decisões TécnicasTodos os relacionamentos foram criados manualmente via “Gerenciar Relacionamentos”.
-Aviso de “caminhos ambíguos” entre works_on e department foi aceito (dois caminhos possíveis: via employee ou via project). Será tratado com USERELATIONSHIP nas medidas DAX quando necessário.
-Correção final da coluna Hours (divisão por 10 + tipo Decimal) foi aplicada antes de fechar o modelo.
-Tabelas department_locations e employee_por_gerente foram mantidas isoladas para uso direto nos visuais.
+### 5.4 Decisões Técnicas
 
-Resultado: Modelo dimensional limpo, otimizado e pronto para a criação de medidas DAX e construção do dashboard corporativo.Documentação detalhada desta etapa (incluindo diagrama interativo):Etapa 05 — Modelo Dimensional (Star Schema) (docs/05-modelo_dimensional.md)
+- Todos os relacionamentos foram criados manualmente via “Gerenciar Relacionamentos”.
+- Aviso de “caminhos ambíguos” entre works_on e department foi aceito (dois caminhos possíveis: via employee ou via project). - Será tratado com USERELATIONSHIP nas medidas DAX quando necessário.
+- Correção final da coluna Hours (divisão por 10 + tipo Decimal) foi aplicada antes de fechar o modelo.
+- Tabelas department_locations e employee_por_gerente foram mantidas isoladas para uso direto nos visuais.
 
- Todo o pipeline de preparação de dados está concluído!Próximos passos possíveis:Criação de medidas DAX
-Construção do dashboard executivo
-Publicação e compartilhamento do relatório
+###  5.5 Resultado
+
+Modelo dimensional limpo, otimizado e pronto para a criação de medidas DAX e construção do dashboard corporativo.
+
+Documentação detalhada desta etapa (incluindo diagrama interativo):
+- [Etapa 05 — Modelo Dimensional (Star Schema)](docs/05-modelo_dimensional.md)
+
+## Conclusão e Prócimos Passos
+
+-Todo o pipeline de preparação de dados foi concluído!
+-Próximos passos possíveis:
+  - Criação de medidas DAX
+  - Construção do dashboard executivo
+  - Publicação e compartilhamento do relatório
 
