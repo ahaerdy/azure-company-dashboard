@@ -225,6 +225,9 @@ mysql -u root -p -e "
 "
 ```
 
+Detalhes da implementação desta etapa neste link:
+- [01-modelagem_relacional.md](docs/01-modelagem_relacional.md)
+
 ---
 
 ## 📊 Etapa 02 — Camada Analítica com Views (MySQL)
