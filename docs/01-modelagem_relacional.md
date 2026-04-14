@@ -229,7 +229,3 @@ mysql> select * from dependent;
 ## ✅ Status desta Etapa
 
 Concluída. Base relacional íntegra, validada e integrada ao Power BI via exportação CSV.
-
-## 🎯 Próxima Etapa
-
-Construção do modelo dimensional (star schema) e desenvolvimento do dashboard executivo no Power BI.
