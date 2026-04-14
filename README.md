@@ -408,4 +408,45 @@ Documentação detalhada desta etapa:
 
 ---
 
+## 🔍 Etapa 04 — Verificação de Horas e Hierarquia
+
+### Objetivo
+
+Antes de finalizar as transformações no Power Query, foram realizadas verificações cruzadas nos dados originais para garantir a consistência das informações de **horas trabalhadas** e da **hierarquia organizacional**.
+
+Essas análises foram fundamentais para definir as regras de mesclagem e limpeza aplicadas na Etapa 03.
+
+### 4.1 Verificação das Horas dos Projetos
+
+- Coluna `Hours` da tabela `works_on` foi analisada.
+- Foram identificados valores com separador decimal incorreto na importação (ex: 325 ao invés de 32.5).
+- **Solução aplicada**: divisão por 10 e alteração do tipo para Número Decimal.
+- Total de horas por projeto e alocações validadas contra as views analíticas criadas na Etapa 02.
+
+### 4.2 Análise da Hierarquia Organizacional
+
+- Coluna `Super_ssn` da tabela `employee` foi examinada.
+- **James Borg** (SSN 888665555) é o único registro com `Super_ssn = NULL` → topo da hierarquia.
+- Todos os demais colaboradores possuem gerente válido.
+- Nenhum departamento ficou sem gerente.
+- **Decisão técnica**: preservar o valor `NULL` (não remover nem preencher) para refletir corretamente a estrutura real da empresa.
+
+### 4.3 Reflexo no Power Query
+
+As verificações desta etapa influenciaram diretamente as transformações:
+
+| Verificação                  | Decisão no Power Query                          | Justificativa |
+|------------------------------|--------------------------------------------------|-------------|
+| Horas com erro decimal       | Dividir coluna `Hours` por 10 + tipo Decimal    | Correção de importação CSV |
+| Super_ssn = NULL (James Borg)| Manter valor nulo na coluna `Manager`           | Preservar hierarquia real |
+| Todos depts. com gerente     | Uso exclusivo de Left Outer Join                | Evitar perda de registros |
+| Hierarquia correta           | Auto-join `Super_ssn` ↔ `Ssn`                   | Criar coluna `Manager` |
+
+**Resultado**: As transformações ficaram alinhadas com a realidade dos dados, garantindo fidelidade para o dashboard.
+
+Documentação detalhada desta etapa:
+- [Etapa 04 — Verificação de Horas e Hierarquia](docs/04-verificacao_horas_e_hierarquia.md)
+
+---
+
 *Continuação nas próximas etapas...*
