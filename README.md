@@ -362,4 +362,50 @@ Documentação detalhada desta etapa neste link:
 
 ---
 
+## 🔄 Etapa 03 — Pipeline de Integração e Tratamento de Dados (Power Query)
+
+### Objetivo
+
+Importar as 6 tabelas via CSV para o Power BI e realizar todas as transformações necessárias para preparar o modelo dimensional (Star Schema).
+
+### 3.1 Importação
+- 6 tabelas importadas como **CSV** no arquivo `azure_company.pbix`
+- Fontes: `employee.csv`, `department.csv`, `dept_locations.csv`, `project.csv`, `works_on.csv`, `dependent.csv`
+
+### 3.2 Transformações Aplicadas
+
+| Passo | Tabela                  | Transformação                                      | Detalhes / Decisões Técnicas |
+|-------|-------------------------|----------------------------------------------------|------------------------------|
+| 1A    | employee                | Mesclar `Fname` + `Lname`                         | Coluna `FullName` (separador: espaço) |
+| 1B    | employee                | Dividir `Address` por `-`                          | Colunas: `Street_Number`, `Street_Name`, `City`, `State` |
+| 1B    | employee                | Tratamento manual de endereço com hífen extra      | Ramesh Narayan: `Fire` → `Fire-Oak` / `Humble` / `TX` |
+| 2     | employee                | Mesclar com `department`                           | Adicionada coluna `Dname` (Left Outer Join) |
+| 3     | employee                | Auto-join para obter gerente                       | Coluna `Manager` via `Super_ssn` ↔ `Ssn` (Left Outer Join) |
+| 4     | department              | Mesclar com `dept_locations` (consulta duplicada)  | Criada tabela `department_locations` |
+| 5     | employee                | Consulta separada `employee_por_gerente`           | Agrupamento por `Manager` + contagem de colaboradores |
+| 6     | works_on                | Correção da coluna `Hours`                         | Valores multiplicados por 10 → divididos por 10 (tipo Decimal) |
+| 7     | department              | Removida mesclagem original                        | Evitar duplicatas em `Dnumber` |
+
+**Decisões técnicas importantes**:
+- Uso exclusivo de **Left Outer Join** para preservar todos os registros (ex: James Borg com `Super_ssn` = NULL)
+- Criação de consultas **separadas** (`department_locations` e `employee_por_gerente`) para não alterar as tabelas originais
+- Manutenção do valor `NULL` em `Manager` (James Borg é o topo da hierarquia)
+
+### 3.3 Resultado Final no Power BI
+Consultas carregadas após “Fechar e Aplicar”:
+- `employee`
+- `department`
+- `project`
+- `works_on`
+- `dependent`
+- `department_locations`
+- `employee_por_gerente`
+
+**Próxima etapa**: Configuração do Modelo Dimensional (Star Schema) e criação de medidas DAX.
+
+Documentação detalhada desta etapa:
+- [Etapa 03 — Pipeline de Integração e Tratamento de Dados (Power Query)](docs/03-pipeline_de_integracao_e_tratamento_de_dados.md)
+
+---
+
 *Continuação nas próximas etapas...*
