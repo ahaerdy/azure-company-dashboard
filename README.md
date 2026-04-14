@@ -484,10 +484,10 @@ O modelo segue o padrão **Star Schema**:
 - `department_locations`
 - `employee_por_gerente`
 
-### 5.3 Diagrama do Modelo (Mermaid)
+### 5.3 Diagrama do Modelo (Star Schema)
 
 <p align="center">
-  <img src="000-Midia_e_Anexos/2026-04-14-09-58-00.png" alt="" width="480">
+  <img src="000-Midia_e_Anexos/2026-04-14-09-58-00.png" alt="" width="1024">
 </p>
 
 5.4 Decisões TécnicasTodos os relacionamentos foram criados manualmente via “Gerenciar Relacionamentos”.
