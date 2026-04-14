@@ -49,7 +49,7 @@ Essa abordagem é válida pois emprega todos os conceitos do desafio original:
 ├── README.md                                          ← Este arquivo
 ├── database/
 │   ├── script_bd_company.sql                         ← DDL: criação das tabelas
-│   ├── insercao_de_dados_e_queries_sql.sql            ← DML: inserção dos dados
+│   ├── insercao_de_dados_e_queries_sql.sql           ← DML: inserção dos dados
 │   └── views_analiticas.sql                          ← Views da camada analítica
 ├── powerbi/
 │   └── azure_company.pbix                            ← Arquivo Power BI
