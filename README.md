@@ -401,8 +401,6 @@ Consultas carregadas após “Fechar e Aplicar”:
 - `department_locations`
 - `employee_por_gerente`
 
-**Próxima etapa**: Configuração do Modelo Dimensional (Star Schema) e criação de medidas DAX.
-
 Documentação detalhada desta etapa:
 - [Etapa 03 — Pipeline de Integração e Tratamento de Dados (Power Query)](docs/03-pipeline_de_integracao_e_tratamento_de_dados.md)
 
