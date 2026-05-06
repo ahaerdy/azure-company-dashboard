@@ -1,6 +1,6 @@
 # Etapa 01 — Modelagem Relacional e Implementação em MySQL Local
 
-## 📌 Contexto
+## Contexto
 
 O desafio original do curso previa a utilização do Microsoft Azure com banco de dados em nuvem.
 
@@ -20,7 +20,7 @@ Essa abordagem mantém todos os conceitos do desafio original:
 
 ---
 
-## 🏗 Estrutura do Banco
+## Estrutura do Banco
 
 Database: `azure_company`
 
@@ -35,7 +35,7 @@ Database: `azure_company`
 
 ---
 
-## 🔗 Relacionamentos
+## Relacionamentos
 
 - Employee ↔ Departament (1:N)
 - Employee ↔ Employee (auto-relacionamento - supervisor)
@@ -45,7 +45,7 @@ Database: `azure_company`
 
 ---
 
-## ⚙ Decisões Técnicas
+## Decisões Técnicas
 
 Durante a implementação, foi identificado um ciclo de dependência:
 
@@ -60,7 +60,7 @@ Solução adotada:
 
 Integridade referencial restaurada e validada após a carga.
 
-## 🧩 Arquitetura Implementada
+## Arquitetura Implementada
 
 A base foi construída seguindo modelo relacional normalizado (3FN), com:
 
@@ -73,7 +73,7 @@ Essa modelagem favorece consistência transacional e prepara o ambiente para pos
 
 ---
 
-## ▶ Como Reproduzir
+## Como Reproduzir
 
 Pré-requisito:
 - MySQL 8.0 ou superior
@@ -96,11 +96,11 @@ SELECT COUNT(*) FROM dependent;
 
 ---
 
-## 📊 Resultado
+## Resultado
 
 Base relacional íntegra e pronta para integração com Power BI.
 
-## 🔍 Validação e Visualização dos Dados
+## Validação e Visualização dos Dados
 
 Após a carga e validação das contagens, foi realizada a inspeção completa das tabelas para confirmar:
 
@@ -226,6 +226,6 @@ mysql> select * from dependent;
 
 ---
 
-## ✅ Status desta Etapa
+## Status desta Etapa
 
 Concluída. Base relacional íntegra, validada e integrada ao Power BI via exportação CSV.

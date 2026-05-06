@@ -1,12 +1,12 @@
 # 05 - Modelo Dimensional (Star Schema)
 
-## 🎯 Objetivo da Etapa
+## Objetivo da Etapa
 
 Configurar os relacionamentos entre as tabelas no Power BI, estruturando o modelo dimensional no formato **Star Schema** para garantir que as métricas calculem corretamente e os visuais do dashboard funcionem de forma consistente.
 
 ---
 
-## 🌟 O que é um Star Schema?
+## O que é um Star Schema?
 
 O modelo estrela organiza os dados em dois tipos de tabela:
 
@@ -20,7 +20,7 @@ Esse modelo é preferido em BI porque:
 
 ---
 
-## 🏗 Estrutura do Modelo
+## Estrutura do Modelo
 
 ### Tabela Fato
 
@@ -47,7 +47,7 @@ Esse modelo é preferido em BI porque:
 
 ---
 
-## 🔗 Relacionamentos Configurados
+## Relacionamentos Configurados
 
 | # | Da Tabela | Coluna | Para Tabela | Coluna | Cardinalidade | Filtro |
 |---|---|---|---|---|---|---|
@@ -59,7 +59,7 @@ Esse modelo é preferido em BI porque:
 
 ---
 
-## 📐 Diagrama do Modelo
+## Diagrama do Modelo
 
 ```mermaid
 erDiagram
@@ -110,7 +110,7 @@ Esse aviso é esperado e não representa erro. Ocorre porque existem dois caminh
 
 ---
 
-## 🔧 Correção Aplicada — Coluna Hours
+## Correção Aplicada — Coluna Hours
 
 Durante a configuração do modelo, foi identificado que os valores da coluna `Hours` estavam multiplicados por 10 devido a problema de separador decimal na importação do CSV.
 
@@ -127,6 +127,6 @@ Valores corrigidos confirmados:
 
 ---
 
-## ✅ Status desta Etapa
+## Status desta Etapa
 
 Concluída. Modelo dimensional configurado, relacionamentos validados e correção de dados aplicada.

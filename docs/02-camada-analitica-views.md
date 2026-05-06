@@ -1,6 +1,6 @@
-# 📊 Etapa 02 — Criação da Camada Analítica com Views (MySQL)
+# Etapa 02 — Criação da Camada Analítica com Views (MySQL)
 
-## 🎯 Objetivo da Etapa
+## Objetivo da Etapa
 
 Após a criação do banco relacional `azure_company` e inserção dos dados, foi necessário criar uma camada intermediária entre o banco transacional (OLTP) e a ferramenta de Business Intelligence (Power BI).
 
@@ -10,7 +10,7 @@ Essa camada foi construída utilizando **views analíticas**.
 
 ---
 
-## 🧠 O que é uma View?
+## O que é uma View?
 
 Uma *view* no MySQL é uma consulta salva que pode ser utilizada como se fosse uma tabela.
 
@@ -22,7 +22,7 @@ Ela:
 
 ---
 
-## 🏗 Por que criar uma camada analítica?
+## Por que criar uma camada analítica?
 
 As tabelas originais foram modeladas para integridade relacional (modelo normalizado).
 
@@ -40,11 +40,11 @@ Assim, criamos uma camada intermediária para:
 
 ---
 
-# 🔵 Views
+# Views
 
 Abaixo são apresentadas as views criadas, acompanhadas de exemplos reais de saída, demonstrando a consolidação e organização dos dados.
 
-## 1️⃣ vw_folha_departamento
+## vw_folha_departamento
 
 Calcula:
 
@@ -66,7 +66,7 @@ mysql> SELECT * FROM vw_folha_departamento;
 3 rows in set (0,00 sec)
 ```
 
-## 2️⃣ vw_horas_projeto
+## vw_horas_projeto
 
 Calcula:
 
@@ -91,7 +91,7 @@ mysql> SELECT * FROM vw_horas_projeto;
 6 rows in set (0,01 sec)
 ```
 
-## 3️⃣ vw_estrutura_hierarquica
+## vw_estrutura_hierarquica
 
 Permite visualizar:
 
@@ -121,7 +121,7 @@ mysql> SELECT * FROM vw_estrutura_hierarquica;
 8 rows in set (0,00 sec)
 ```
 
-## 4️⃣ vw_fato_horas
+## vw_fato_horas
 
 Essa é a principal view analítica.
 
@@ -156,7 +156,7 @@ mysql> SELECT * FROM vw_fato_horas;
 
 ---
 
-# 📈 Evolução Arquitetural do Projeto
+# Evolução Arquitetural do Projeto
 
 ### Antes:
 Banco apenas relacional (modelo normalizado)
@@ -170,7 +170,7 @@ Essa transição representa a introdução de uma camada semântica, aproximando
 
 ---
 
-## 📌 Conclusão
+## Conclusão
 
 A criação das views marca o início da transformação dos dados brutos em informação analítica.
 
@@ -190,9 +190,9 @@ As views continuam válidas como documentação da camada semântica e podem ser
 
 ---
 
-# ▶ Como Reproduzir Esta Etapa
+# Como Reproduzir Esta Etapa
 
-## 1️⃣ Pré-requisito
+## Pré-requisito
 
 O banco deve já estar criado e populado conforme documentado na Etapa 01.
 
@@ -201,13 +201,13 @@ Executar previamente:
 - `database/script_bd_company.sql`
 - `database/insercao_de_dados_e_queries_sql.sql`
 
-## 2️⃣ Criar as Views Analíticas
+## 2Criar as Views Analíticas
 
 Executar:
 
 - `database/views_analiticas.sql`
 
-## 3️⃣ Validar a Criação
+## Validar a Criação
 
 ```mysql
 SELECT * FROM vw_folha_departamento;
@@ -220,6 +220,6 @@ Se as consultas retornarem dados, a camada analítica foi criada com sucesso.
 
 ---
 
-## ✅ Status desta Etapa
+## Status desta Etapa
 
 Concluída. Views criadas, validadas e documentadas.

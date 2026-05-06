@@ -219,7 +219,7 @@ mysql -u root -p -e "
 ```
 
 Documentação detalhada desta etapa neste link:
-- [Etapa 01 — Modelagem Relacional e Implementação em MySQL Local](docs/01-modelagem_relacional.md)
+👉 [Etapa 01 — Modelagem Relacional e Implementação em MySQL Local](docs/01-modelagem_relacional.md)
 
 ---
 
@@ -353,7 +353,7 @@ mysql -u root -p -e "
 A integração com o Power BI **não foi realizada via views**, pois a configuração `secure_file_priv` do MySQL impediu o acesso direto ao servidor. Os dados foram exportados para **CSV** e importados via Power Query. As views continuam válidas como documentação da camada semântica e podem ser utilizadas em conexões diretas ao MySQL quando disponíveis.
 
 Documentação detalhada desta etapa neste link:
-- [Etapa 02 — Criação da Camada Analítica com Views (MySQL)](docs/02-camada-analitica-views.md)
+👉 [Etapa 02 — Criação da Camada Analítica com Views (MySQL)](docs/02-camada-analitica-views.md)
 
 ---
 
@@ -397,7 +397,7 @@ Consultas carregadas após “Fechar e Aplicar”:
 - `employee_por_gerente`
 
 Documentação detalhada desta etapa:
-- [Etapa 03 — Pipeline de Integração e Tratamento de Dados (Power Query)](docs/03-pipeline_de_integracao_e_tratamento_de_dados.md)
+👉 [Etapa 03 — Pipeline de Integração e Tratamento de Dados (Power Query)](docs/03-pipeline_de_integracao_e_tratamento_de_dados.md)
 
 ---
 
@@ -438,7 +438,7 @@ As verificações desta etapa influenciaram diretamente as transformações:
 **Resultado**: As transformações ficaram alinhadas com a realidade dos dados, garantindo fidelidade para o dashboard.
 
 Documentação detalhada desta etapa:
-- [Etapa 04 — Verificação de Horas e Hierarquia](docs/04-verificacao_horas_e_hierarquia.md)
+👉 [Etapa 04 — Verificação de Horas e Hierarquia](docs/04-verificacao_horas_e_hierarquia.md)
 
 ---
 
@@ -530,7 +530,7 @@ erDiagram
 Modelo dimensional limpo, otimizado e pronto para a criação de medidas DAX e construção do dashboard corporativo.
 
 Documentação detalhada desta etapa (incluindo diagrama interativo):
-- [Etapa 05 — Modelo Dimensional (Star Schema)](docs/05-modelo_dimensional.md)
+👉 [Etapa 05 — Modelo Dimensional (Star Schema)](docs/05-modelo_dimensional.md)
 
 ## Conclusão e Prócimos Passos
 
