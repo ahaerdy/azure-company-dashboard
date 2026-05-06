@@ -1,16 +1,17 @@
-# Processando e Transformando Dados com Power BI
+# Azure Company Dashboard
 
-## 📋 Sobre o Projeto
+## Sobre o Projeto
 
-Projeto desenvolvido como parte do bootcamp **NTT DATA - Engenharia de Dados com Python** na plataforma DIO.
+Pipeline completo de engenharia de dados para a empresa fictícia Azure Company.
 
 O objetivo é demonstrar o pipeline completo de engenharia de dados — desde a modelagem relacional até a preparação de dados para um dashboard corporativo — utilizando MySQL e Power BI.
+
 
 ---
 
 ## 🎯 Escopo do Desafio
 
-Conforme as instruções oficiais do desafio, o objetivo desta entrega é a **coleta e processamento de dados utilizando o Power BI**, preparando a base para futura construção de um dashboard corporativo. As etapas envolvem:
+Conforme as instruções oficiais do desafio, o objetivo é a **coleta e processamento de dados utilizando o Power BI**, preparando a base para futura construção de um dashboard corporativo. As etapas envolvem:
 
 1. Criação do banco de dados e modelagem relacional
 2. Construção de camada analítica com views SQL

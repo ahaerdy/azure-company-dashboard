@@ -130,7 +130,3 @@ Valores corrigidos confirmados:
 ## ✅ Status desta Etapa
 
 Concluída. Modelo dimensional configurado, relacionamentos validados e correção de dados aplicada.
-
-## 🎯 Próxima Etapa
-
-Criação de medidas DAX para métricas executivas do dashboard corporativo.
