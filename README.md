@@ -218,9 +218,6 @@ mysql -u root -p -e "
 "
 ```
 
-### Documentação detalhada desta etapa neste link:
-👉 [Etapa 01 — Modelagem Relacional e Implementação em MySQL Local](docs/01-modelagem_relacional.md)
-
 ---
 
 ## Etapa 02 — Camada Analítica com Views (MySQL)
@@ -351,10 +348,6 @@ mysql -u root -p -e "
 ### ⚠️ Observação sobre a integração com Power BI
 
 A integração com o Power BI **não foi realizada via views**, pois a configuração `secure_file_priv` do MySQL impediu o acesso direto ao servidor. Os dados foram exportados para **CSV** e importados via Power Query. As views continuam válidas como documentação da camada semântica e podem ser utilizadas em conexões diretas ao MySQL quando disponíveis.
-
-### Documentação detalhada desta etapa neste link:
-
-- 🔴 [Etapa 02 — Criação da Camada Analítica com Views (MySQL)](docs/02-camada-analitica-views.md)
 
 ---
 
@@ -529,9 +522,6 @@ erDiagram
 ###  5.5 Resultado
 
 Modelo dimensional limpo, otimizado e pronto para a criação de medidas DAX e construção do dashboard corporativo.
-
-### Documentação detalhada desta etapa (incluindo diagrama interativo):
-👉 [Etapa 05 — Modelo Dimensional (Star Schema)](docs/05-modelo_dimensional.md)
 
 ## Conclusão e Prócimos Passos
 
