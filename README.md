@@ -352,9 +352,9 @@ mysql -u root -p -e "
 
 A integração com o Power BI **não foi realizada via views**, pois a configuração `secure_file_priv` do MySQL impediu o acesso direto ao servidor. Os dados foram exportados para **CSV** e importados via Power Query. As views continuam válidas como documentação da camada semântica e podem ser utilizadas em conexões diretas ao MySQL quando disponíveis.
 
-### 🔴 Documentação detalhada desta etapa neste link:
+### Documentação detalhada desta etapa neste link:
 
-- [Etapa 02 — Criação da Camada Analítica com Views (MySQL)](docs/02-camada-analitica-views.md)
+- 🔴 [Etapa 02 — Criação da Camada Analítica com Views (MySQL)](docs/02-camada-analitica-views.md)
 
 ---
 
