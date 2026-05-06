@@ -6,10 +6,9 @@ Pipeline completo de engenharia de dados para a empresa fictícia Azure Company.
 
 O objetivo é demonstrar o pipeline completo de engenharia de dados — desde a modelagem relacional até a preparação de dados para um dashboard corporativo — utilizando MySQL e Power BI.
 
-
 ---
 
-## 🎯 Escopo do Desafio
+## Escopo do Desafio
 
 Conforme as instruções oficiais do desafio, o objetivo é a **coleta e processamento de dados utilizando o Power BI**, preparando a base para futura construção de um dashboard corporativo. As etapas envolvem:
 
@@ -21,7 +20,7 @@ Conforme as instruções oficiais do desafio, o objetivo é a **coleta e process
 
 ---
 
-## ⚠️ Adaptação Técnica
+## Adaptação Técnica
 
 O desafio original previa a utilização do **Microsoft Azure** com banco de dados em nuvem. Como alternativa técnica viável — devido à exigência de serviço pago — foi implementada a solução com:
 
@@ -62,7 +61,7 @@ Essa abordagem é válida pois emprega todos os conceitos do desafio original:
 
 ---
 
-## 🏗 Etapa 01 — Modelagem Relacional
+## Etapa 01 — Modelagem Relacional
 
 ### Banco de dados: `azure_company`
 
@@ -104,9 +103,6 @@ SET FOREIGN_KEY_CHECKS = 1;
 Integridade referencial restaurada e validada após a carga.
 
 #### Estrutura das tabelas
-
-<details>
-<summary>📄 Visualizar dados das tabelas</summary>
 
 **employee**
 ```
@@ -201,8 +197,6 @@ Integridade referencial restaurada e validada após a carga.
 +-----------+----------------+------+------------+--------------+
 ```
 
-</details>
-
 #### Como reproduzir
 
 ```bash
@@ -229,7 +223,7 @@ Documentação detalhada desta etapa neste link:
 
 ---
 
-## 📊 Etapa 02 — Camada Analítica com Views (MySQL)
+## Etapa 02 — Camada Analítica com Views (MySQL)
 
 ### Objetivo
 
@@ -363,7 +357,7 @@ Documentação detalhada desta etapa neste link:
 
 ---
 
-## 🔄 Etapa 03 — Pipeline de Integração e Tratamento de Dados (Power Query)
+## Etapa 03 — Pipeline de Integração e Tratamento de Dados (Power Query)
 
 ### Objetivo
 
@@ -407,7 +401,7 @@ Documentação detalhada desta etapa:
 
 ---
 
-## 🔍 Etapa 04 — Verificação de Horas e Hierarquia
+## Etapa 04 — Verificação de Horas e Hierarquia
 
 ### Objetivo
 
