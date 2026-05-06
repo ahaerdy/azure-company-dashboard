@@ -523,11 +523,7 @@ erDiagram
 
 Modelo dimensional limpo, otimizado e pronto para a criação de medidas DAX e construção do dashboard corporativo.
 
-## Conclusão e Prócimos Passos
+## Referências
 
--Todo o pipeline de preparação de dados foi concluído!
--Próximos passos possíveis:
-  - Criação de medidas DAX
-  - Construção do dashboard executivo
-  - Publicação e compartilhamento do relatório
+- [Repositório de Estudos – Bootcamp NTT DATA - Engenharia de Dados com Python](https://github.com/ahaerdy/DIO-learning/tree/main/NTT%20DATA-Engenharia%20de%20Dados%20com%20Python#-reposit%C3%B3rio-de-estudos--bootcamp-ntt-data-engenharia-de-dados-com-python)
 
